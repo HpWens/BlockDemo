@@ -101,7 +101,7 @@ public class BlockView extends View {
                 int centerX = getWidth() / 2;
                 int centerY = getHeight() / 2;
 
-                if ((centerX - x) * (centerX - x) + (centerY - y) * (centerY - y) <= getWidth() * getWidth() / 2) {
+                if ((centerX - x) * (centerX - x) + (centerY - y) * (centerY - y) <= getWidth() * getWidth() / 8) {
                     if (mOnClickListener != null && mClickEnable) {
                         mOnClickListener.BlockOnClickListener(mText);
                         mClickEnable = false;
