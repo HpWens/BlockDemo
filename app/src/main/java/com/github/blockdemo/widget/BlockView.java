@@ -98,23 +98,19 @@ public class BlockView extends View {
             case MotionEvent.ACTION_DOWN:
                 float x = event.getX();
                 float y = event.getY();
-                int centerX = getWidth() / 2;
-                int centerY = getHeight() / 2;
 
-                if ((centerX - x) * (centerX - x) + (centerY - y) * (centerY - y) <= getWidth() * getWidth() / 2) {
-                    if (mOnClickListener != null && mClickEnable) {
+                Region region = new Region();
+                region.setPath(mPath, new Region(0, 0, getWidth(), getHeight()));
+
+                if (mOnClickListener != null) {
+                    if (region.contains((int) x, (int) y)) {
                         mOnClickListener.BlockOnClickListener(mText);
-                        mClickEnable = false;
+                        //mClickEnable = false;
                     }
                 }
                 break;
-            case MotionEvent.ACTION_UP:
-                mClickEnable = true;
-                break;
-            default:
-                break;
         }
-        return true;
+        return super.onTouchEvent(event);
     }
 
     public interface OnClickListener {
